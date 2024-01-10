@@ -11,8 +11,8 @@ public class WeatherForecasts : EndpointGroupBase
             .MapGet(GetWeatherForecasts);
     }
 
-    public async Task<IEnumerable<WeatherForecast>> GetWeatherForecasts(ISender sender)
+    public async Task<IEnumerable<WeatherForecast>> GetWeatherForecasts(ISender sender, [AsParameters] GetWeatherForecastsQuery query)
     {
-        return await sender.Send(new GetWeatherForecastsQuery());
+        return await sender.Send(query);
     }
 }

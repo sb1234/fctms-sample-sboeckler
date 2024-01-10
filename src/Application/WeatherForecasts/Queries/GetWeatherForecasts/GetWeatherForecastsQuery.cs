@@ -1,6 +1,9 @@
 ﻿namespace FctmsDemoApp.Application.WeatherForecasts.Queries.GetWeatherForecasts;
 
-public record GetWeatherForecastsQuery : IRequest<IEnumerable<WeatherForecast>>;
+public record GetWeatherForecastsQuery() : IRequest<IEnumerable<WeatherForecast>>
+{
+    public string Weather { get; set; } = "";
+}
 
 public class GetWeatherForecastsQueryHandler : IRequestHandler<GetWeatherForecastsQuery, IEnumerable<WeatherForecast>>
 {
@@ -15,11 +18,18 @@ public class GetWeatherForecastsQueryHandler : IRequestHandler<GetWeatherForecas
     {
         var rng = new Random();
 
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        var result = Enumerable.Range(1, 30).Select(index => new WeatherForecast
         {
             Date = DateTime.Now.AddDays(index),
             TemperatureC = rng.Next(-20, 55),
             Summary = Summaries[rng.Next(Summaries.Length)]
         });
+
+        if (string.IsNullOrWhiteSpace(request.Weather) == false)
+        {
+            result = result.Where(x => request.Weather.Equals(x.Summary, StringComparison.InvariantCultureIgnoreCase));
+        }
+        
+        return result;
     }
 }

@@ -303,6 +303,18 @@
           "WeatherForecasts"
         ],
         "operationId": "GetWeatherForecasts",
+        "parameters": [
+          {
+            "name": "Weather",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
