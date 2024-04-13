@@ -149,6 +149,7 @@ export class TodoComponent implements OnInit {
         }
 
         this.selectedItem.priority = this.itemDetailsEditor.priority;
+        this.selectedItem.dueDate = this.itemDetailsEditor.dueDate;
         this.selectedItem.note = this.itemDetailsEditor.note;
         this.itemDetailsModalRef.hide();
         this.itemDetailsEditor = {};

@@ -51,6 +51,9 @@
                 (click)="editItem(item, 'itemTitle' + i)" class="form-control item-input-control">
                 <span>{{ item.title }}</span>
               </div>
+              <div class="todo-item-duedate">
+                <span>{{item?.dueDate ? "Due Date: " + item.dueDate : ""}}</span>
+              </div>
             </div>
             <div class="todo-item-commands">
               <button *ngIf="item.id != 0" (click)="showItemDetailsModal(itemDetailsModalTemplate, item)"
@@ -122,6 +125,10 @@
         <select class="form-control" [(ngModel)]="itemDetailsEditor.priority">
           <option [ngValue]="level.id" *ngFor="let level of priorityLevels">{{ level.title }}</option>
         </select>
+      </div>
+      <div class="form-group">
+        <label for="dueDate">Due Date</label>
+        <input type="date" class="form-control" id="dueDate" placeholder="YYYY-MM-DD" [(ngModel)]="itemDetailsEditor.dueDate" maxlength="10" />
       </div>
       <div class="form-group">
         <label for="note">Note</label>

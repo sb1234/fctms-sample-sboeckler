@@ -13,6 +13,8 @@ public class TodoItemDto
     public bool Done { get; init; }
 
     public int Priority { get; init; }
+    
+    public DateTime? DueDate { get; init; }
 
     public string? Note { get; init; }
 

@@ -10,7 +10,9 @@ public record UpdateTodoItemDetailCommand : IRequest
     public int ListId { get; init; }
 
     public PriorityLevel Priority { get; init; }
-
+    
+    public DateTime? DueDate { get; init; }
+    
     public string? Note { get; init; }
 }
 
@@ -32,6 +34,7 @@ public class UpdateTodoItemDetailCommandHandler : IRequestHandler<UpdateTodoItem
 
         entity.ListId = request.ListId;
         entity.Priority = request.Priority;
+        entity.DueDate = request.DueDate;
         entity.Note = request.Note;
 
         await _context.SaveChangesAsync(cancellationToken);

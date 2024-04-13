@@ -452,6 +452,11 @@
           "priority": {
             "$ref": "#/components/schemas/PriorityLevel"
           },
+          "dueDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
           "note": {
             "type": "string",
             "nullable": true
@@ -552,6 +557,11 @@
           "priority": {
             "type": "integer",
             "format": "int32"
+          },
+          "dueDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
           },
           "note": {
             "type": "string",

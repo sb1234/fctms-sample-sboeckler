@@ -39,6 +39,7 @@ public class UpdateTodoItemDetailTests : BaseTestFixture
             Id = itemId,
             ListId = listId,
             Note = "This is the note.",
+            DueDate = DateTime.Now,
             Priority = PriorityLevel.High
         };
 

@@ -800,6 +800,7 @@ export class UpdateTodoItemDetailCommand implements IUpdateTodoItemDetailCommand
     id?: number;
     listId?: number;
     priority?: PriorityLevel;
+    dueDate?: Date | undefined;
     note?: string | undefined;
 
     constructor(data?: IUpdateTodoItemDetailCommand) {
@@ -816,6 +817,7 @@ export class UpdateTodoItemDetailCommand implements IUpdateTodoItemDetailCommand
             this.id = _data["id"];
             this.listId = _data["listId"];
             this.priority = _data["priority"];
+            this.dueDate = _data["dueDate"] ? new Date(_data["dueDate"].toString()) : <any>undefined;
             this.note = _data["note"];
         }
     }
@@ -832,6 +834,7 @@ export class UpdateTodoItemDetailCommand implements IUpdateTodoItemDetailCommand
         data["id"] = this.id;
         data["listId"] = this.listId;
         data["priority"] = this.priority;
+        data["dueDate"] = this.dueDate ? this.dueDate.toISOString() : <any>undefined;
         data["note"] = this.note;
         return data;
     }
@@ -841,6 +844,7 @@ export interface IUpdateTodoItemDetailCommand {
     id?: number;
     listId?: number;
     priority?: PriorityLevel;
+    dueDate?: Date | undefined;
     note?: string | undefined;
 }
 
@@ -1009,6 +1013,7 @@ export class TodoItemDto implements ITodoItemDto {
     title?: string | undefined;
     done?: boolean;
     priority?: number;
+    dueDate?: Date | undefined;
     note?: string | undefined;
 
     constructor(data?: ITodoItemDto) {
@@ -1027,6 +1032,7 @@ export class TodoItemDto implements ITodoItemDto {
             this.title = _data["title"];
             this.done = _data["done"];
             this.priority = _data["priority"];
+            this.dueDate = _data["dueDate"] ? new Date(_data["dueDate"].toString()) : <any>undefined;
             this.note = _data["note"];
         }
     }
@@ -1045,6 +1051,7 @@ export class TodoItemDto implements ITodoItemDto {
         data["title"] = this.title;
         data["done"] = this.done;
         data["priority"] = this.priority;
+        data["dueDate"] = this.dueDate ? this.dueDate.toISOString() : <any>undefined;
         data["note"] = this.note;
         return data;
     }
@@ -1056,6 +1063,7 @@ export interface ITodoItemDto {
     title?: string | undefined;
     done?: boolean;
     priority?: number;
+    dueDate?: Date | undefined;
     note?: string | undefined;
 }
 
