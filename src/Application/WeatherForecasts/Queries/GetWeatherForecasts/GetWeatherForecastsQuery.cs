@@ -3,6 +3,7 @@
 public record GetWeatherForecastsQuery() : IRequest<IEnumerable<WeatherForecast>>
 {
     public string Weather { get; set; } = "";
+    public string Temperature  { get; set; } = "";
 }
 
 public class GetWeatherForecastsQueryHandler : IRequestHandler<GetWeatherForecastsQuery, IEnumerable<WeatherForecast>>
@@ -40,14 +41,25 @@ public class GetWeatherForecastsQueryHandler : IRequestHandler<GetWeatherForecas
     public async Task<IEnumerable<WeatherForecast>> Handle(GetWeatherForecastsQuery request, CancellationToken cancellationToken)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
     {
-        var rng = new Random();
-
         // Change array contents or to another dataset as needed for mocking
         var result = Data.AsEnumerable();
 
         if (string.IsNullOrWhiteSpace(request.Weather) == false)
         {
             result = result.Where(x => request.Weather.Equals(x.Summary, StringComparison.InvariantCultureIgnoreCase));
+        }
+        
+        if (string.IsNullOrWhiteSpace(request.Temperature) == false)
+        {
+            try
+            {
+                List<int> temperatures = request.Temperature.Split(',').Select(int.Parse).ToList();
+                result = result.Where(x => temperatures.Contains(x.TemperatureC));
+            }
+            catch (Exception)
+            {
+               //Fail gracefullly
+            }
         }
         
         return result;

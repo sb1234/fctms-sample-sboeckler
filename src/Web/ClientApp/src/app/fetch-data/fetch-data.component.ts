@@ -9,7 +9,8 @@ export class FetchDataComponent {
   public forecasts: WeatherForecast[] = [];
 
   public filters = {
-    weather: ""
+    weather: "",
+    temperature: "",
   };
 
   constructor(private client: WeatherForecastsClient) {
@@ -21,9 +22,22 @@ export class FetchDataComponent {
   }
 
   private refresh() {
-    this.client.getWeatherForecasts(this.filters.weather).subscribe({
+    this.validateTemperature();
+    this.client.getWeatherForecasts(this.filters.weather, this.filters.temperature).subscribe({
       next: result => this.forecasts = result,
       error: error => console.error(error)
     });
+  }
+
+  private validateTemperature(){
+    if(this.filters.temperature){
+      //Accept negative and positive numbers in a comma separated list
+      const regex = /((-\d+|\d+)(,(-\d+|\d+))+)|(-\d+|\d+)/g;
+      const valid = this.filters.temperature.match(regex);
+
+      if(!valid){
+        this.filters.temperature = "";
+      }
+    }
   }
 }

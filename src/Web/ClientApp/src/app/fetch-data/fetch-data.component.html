@@ -9,6 +9,10 @@
   <div class="col-4">
     <input [(ngModel)]="filters.weather" (ngModelChange)="filterChanged()">
   </div>
+  <div class="col-1">Temperature(C)</div>
+  <div class="col-4">
+    <input [(ngModel)]="filters.temperature" (ngModelChange)="filterChanged()">
+  </div>
 </div>
 
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts.length">

@@ -313,6 +313,16 @@
               "nullable": true
             },
             "x-position": 1
+          },
+          {
+            "name": "Temperature",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 2
           }
         ],
         "responses": {
