@@ -52,7 +52,7 @@
                 <span>{{ item.title }}</span>
               </div>
               <div class="todo-item-duedate">
-                <span>{{item?.dueDate ? "Due Date: " + item.dueDate : ""}}</span>
+                <span>{{item?.dueDate ? "Due Date: " + formatDate(item.dueDate) : ""}}</span>
               </div>
             </div>
             <div class="todo-item-commands">

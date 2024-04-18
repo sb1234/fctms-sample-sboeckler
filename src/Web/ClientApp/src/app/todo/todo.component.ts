@@ -226,4 +226,12 @@ export class TodoComponent implements OnInit {
       );
     }
   }
+
+  formatDate(dueDate: Date){
+    var regEx = /^\d{4}-\d{2}-\d{2}$/;
+    if(!dueDate.toString().match(regEx)){
+      return dueDate.toISOString().split('T')[0];
+    }
+    return dueDate;
+  }
 }
